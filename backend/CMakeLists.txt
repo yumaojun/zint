@@ -19,53 +19,72 @@ else()
 endif()
 set(zint_SRCS ${zint_OUTPUT_SRCS} ${zint_COMMON_SRCS} ${zint_ONEDIM_SRCS} ${zint_POSTAL_SRCS} ${zint_TWODIM_SRCS})
 
+# Set MAC SDK Path
+if(APPLE)
+    execute_process(
+        COMMAND xcrun --sdk macosx --show-sdk-path
+        OUTPUT_VARIABLE OSX_SDK_PATH
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    set(CMAKE_OSX_SYSROOT ${OSX_SDK_PATH})
+    message(STATUS "Using macOS SDK: ${OSX_SDK_PATH}")
+endif()
+
+# Custom library name
+set(library_name "zint")
 if(ZINT_SHARED)
-    add_library(zint SHARED ${zint_SRCS})
+    add_library(${library_name} SHARED ${zint_SRCS})
 
     if(WIN32)
         target_sources(${PROJECT_NAME} PRIVATE libzint.rc)
     endif()
 endif()
 
+# Alias name
+add_library(ZINT::ZINT ALIAS ${library_name})
+
 if(ZINT_STATIC)
-    add_library(zint-static STATIC ${zint_SRCS})
+    add_library(${library_name}-static STATIC ${zint_SRCS})
     if(WIN32)
-        set_target_properties(zint-static PROPERTIES OUTPUT_NAME zint-static)
+        set_target_properties(${library_name}-static PROPERTIES OUTPUT_NAME zint-static)
     else()
-        set_target_properties(zint-static PROPERTIES OUTPUT_NAME zint)
+        set_target_properties(${library_name}-static PROPERTIES OUTPUT_NAME zint)
     endif()
 endif()
 
 function(zint_target_link_libraries library)
     if(ZINT_SHARED)
-        target_link_libraries(zint ${library})
+        target_link_libraries(${library_name} ${library})
     endif()
     if(ZINT_STATIC)
-        target_link_libraries(zint-static ${library})
+        target_link_libraries(${library_name}-static ${library})
     endif()
 endfunction()
 
 function(zint_target_compile_definitions scope definition)
     if(ZINT_SHARED)
-        target_compile_definitions(zint ${scope} ${definition})
+        target_compile_definitions(${library_name} ${scope} ${definition})
     endif()
     if(ZINT_STATIC)
-        target_compile_definitions(zint-static ${scope} ${definition})
+        target_compile_definitions(${library_name}-static ${scope} ${definition})
     endif()
 endfunction()
 
 function(zint_target_include_directories)
     if(ZINT_SHARED)
-        target_include_directories(zint ${ARGN})
+        target_include_directories(${library_name} ${ARGN})
     endif()
     if(ZINT_STATIC)
-        target_include_directories(zint-static ${ARGN})
+        target_include_directories(${library_name}-static ${ARGN})
     endif()
 endfunction()
 
 if(ZINT_SHARED)
-    set_target_properties(zint PROPERTIES   SOVERSION "${ZINT_VERSION_MAJOR}.${ZINT_VERSION_MINOR}"
+    set_target_properties(${library_name} PROPERTIES   SOVERSION "${ZINT_VERSION_MAJOR}.${ZINT_VERSION_MINOR}"
                                             VERSION ${ZINT_VERSION})
+    if(APPLE)
+      set_target_properties(${library_name} PROPERTIES INSTALL_NAME_DIR "@rpath")
+    endif()
 endif()
 
 if(ZINT_USE_PNG AND PNG_FOUND)
@@ -87,7 +106,7 @@ endif()
 
 if(MSVC)
     if(ZINT_SHARED)
-        target_compile_definitions(zint PRIVATE DLL_EXPORT)
+        target_compile_definitions(${library_name} PRIVATE DLL_EXPORT)
     endif()
 endif()
 
@@ -97,10 +116,10 @@ zint_target_include_directories(PUBLIC
 )
 
 if(ZINT_SHARED)
-    install(TARGETS zint EXPORT zint-targets ${INSTALL_TARGETS_DEFAULT_ARGS})
+    install(TARGETS ${library_name} EXPORT zint-targets ${INSTALL_TARGETS_DEFAULT_ARGS})
 endif()
 if(ZINT_STATIC)
-    install(TARGETS zint-static EXPORT zint-targets ${INSTALL_TARGETS_DEFAULT_ARGS})
+    install(TARGETS ${library_name}-static EXPORT zint-targets ${INSTALL_TARGETS_DEFAULT_ARGS})
 endif()
 install(EXPORT zint-targets NAMESPACE zint:: DESTINATION "${SHARE_INSTALL_PREFIX}/zint")
 install(FILES zint.h DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)

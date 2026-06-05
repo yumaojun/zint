@@ -13,6 +13,11 @@ set(ZINT_VERSION_RELEASE 0)
 set(ZINT_VERSION_BUILD 0) # Set to 0 before release, set to 9 after release
 set(ZINT_VERSION "${ZINT_VERSION_MAJOR}.${ZINT_VERSION_MINOR}.${ZINT_VERSION_RELEASE}.${ZINT_VERSION_BUILD}")
 
+# Add on 2026/1/8
+set(LIBZINT_FOUND 1 PARENT_SCOPE)
+set(LIBZINT_VERSION 21300 PARENT_SCOPE)
+set(LIBZINT_VERSION_STRING "2.13.0" PARENT_SCOPE)
+
 add_definitions(-DZINT_VERSION=\"${ZINT_VERSION}\")
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
@@ -24,10 +29,10 @@ option(ZINT_TEST      "Set test compile flag"           OFF)
 option(ZINT_COVERAGE  "Set code coverage flags"         OFF)
 option(ZINT_SHARED    "Build shared library"            ON)
 option(ZINT_STATIC    "Build static library"            OFF)
-option(ZINT_USE_PNG   "Build with PNG support"          ON)
-option(ZINT_USE_QT    "Build with Qt support"           ON)
+option(ZINT_USE_PNG   "Build with PNG support"          OFF)
+option(ZINT_USE_QT    "Build with Qt support"           OFF)
 option(ZINT_QT6       "If ZINT_USE_QT, use Qt6"         OFF)
-option(ZINT_UNINSTALL "Add uninstall target"            ON)
+option(ZINT_UNINSTALL "Add uninstall target"            OFF)
 option(ZINT_FRONTEND  "Build frontend"                  ON)
 
 if(NOT ZINT_SHARED AND NOT ZINT_STATIC)
