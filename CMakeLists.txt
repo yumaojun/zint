@@ -13,6 +13,10 @@ set(ZINT_VERSION_RELEASE 0)
 set(ZINT_VERSION_BUILD 0) # Set to 0 before release, set to 9 after release
 set(ZINT_VERSION "${ZINT_VERSION_MAJOR}.${ZINT_VERSION_MINOR}.${ZINT_VERSION_RELEASE}.${ZINT_VERSION_BUILD}")
 
+# Add on 2026/7/16
+set(LIBZINT_FOUND 1 PARENT_SCOPE)
+set(LIBZINT_VERSION 21600 PARENT_SCOPE)
+set(LIBZINT_VERSION_STRING "2.16.0" PARENT_SCOPE)
 add_definitions(-DZINT_VERSION=\"${ZINT_VERSION}\")
 
 option(ZINT_DEBUG     "Set debug compile flags"         OFF)
@@ -23,12 +27,12 @@ option(ZINT_TEST      "Set test compile flag"           OFF)
 option(ZINT_COVERAGE  "Set code coverage flags"         OFF)
 option(ZINT_SHARED    "Build shared library"            ON)
 option(ZINT_STATIC    "Build static library"            OFF)
-option(ZINT_FRONTEND  "Build frontend"                  ON)
+option(ZINT_FRONTEND  "Build frontend"                  OFF)
 option(ZINT_USE_GS1SE "Build with GS1 Syntax Engine"    ON)
-option(ZINT_USE_PNG   "Build with PNG support"          ON)
-option(ZINT_USE_QT    "Build with Qt support"           ON)
+option(ZINT_USE_PNG   "Build with PNG support"          OFF)
+option(ZINT_USE_QT    "Build with Qt support"           OFF)
 option(ZINT_QT6       "If ZINT_USE_QT, use Qt6"         OFF)
-option(ZINT_UNINSTALL "Add uninstall target"            ON)
+option(ZINT_UNINSTALL "Add uninstall target"            OFF)
 
 if(NOT ZINT_SHARED AND NOT ZINT_STATIC)
     message(SEND_ERROR "Either ZINT_SHARED or ZINT_STATIC or both must be set")

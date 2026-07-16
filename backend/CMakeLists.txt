@@ -28,14 +28,18 @@ if(ZINT_USE_PNG AND PNG_FOUND)
     set(zint_OUTPUT_SRCS ${zint_OUTPUT_SRCS} png.c)
 endif()
 set(zint_SRCS ${zint_OUTPUT_SRCS} ${zint_COMMON_SRCS} ${zint_ONEDIM_SRCS} ${zint_POSTAL_SRCS} ${zint_TWODIM_SRCS})
+set(library_name "zint")
 
 if(ZINT_SHARED)
-    add_library(zint SHARED ${zint_SRCS})
+    add_library(${library_name} SHARED ${zint_SRCS})
 
     if(WIN32)
         target_sources(${PROJECT_NAME} PRIVATE libzint.rc)
     endif()
 endif()
+
+# Alias name
+add_library(ZINT::ZINT ALIAS ${library_name})
 
 if(ZINT_STATIC)
     add_library(zint-static STATIC ${zint_SRCS})
