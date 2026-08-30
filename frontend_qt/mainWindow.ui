@@ -3,7 +3,7 @@
  <class>mainWindow</class>
  <widget class="QWidget" name="mainWindow">
   <property name="windowModality">
-   <enum>Qt::NonModal</enum>
+   <enum>Qt::WindowModality::NonModal</enum>
   </property>
   <property name="minimumSize">
    <size>
@@ -15,7 +15,7 @@
    <string>Zint Barcode Studio</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset>
     <normaloff>:/res/zint-qt.ico</normaloff>:/res/zint-qt.ico</iconset>
   </property>
   <property name="autoFillBackground">
@@ -34,7 +34,7 @@
       </size>
      </property>
      <property name="contextMenuPolicy">
-      <enum>Qt::CustomContextMenu</enum>
+      <enum>Qt::ContextMenuPolicy::CustomContextMenu</enum>
      </property>
     </widget>
    </item>
@@ -44,17 +44,17 @@
       <bool>false</bool>
      </property>
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::Shape::StyledPanel</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Plain</enum>
+      <enum>QFrame::Shadow::Plain</enum>
      </property>
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
      <widget class="QStatusBar" name="errtxtBar">
       <property name="contextMenuPolicy">
-       <enum>Qt::CustomContextMenu</enum>
+       <enum>Qt::ContextMenuPolicy::CustomContextMenu</enum>
       </property>
       <property name="autoFillBackground">
        <bool>true</bool>
@@ -71,7 +71,7 @@
    <item>
     <layout class="QHBoxLayout" name="hLayoutMain">
      <property name="sizeConstraint">
-      <enum>QLayout::SetMinimumSize</enum>
+      <enum>QLayout::SizeConstraint::SetMinimumSize</enum>
      </property>
      <item>
       <layout class="QVBoxLayout" name="vLayoutSymbology">
@@ -86,7 +86,7 @@
             <string>Symbo&amp;logy:</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
            </property>
            <property name="buddy">
             <cstring>bstyle</cstring>
@@ -105,7 +105,7 @@
             <string>Type of barcode</string>
            </property>
            <property name="sizeAdjustPolicy">
-            <enum>QComboBox::AdjustToContents</enum>
+            <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
            </property>
           </widget>
          </item>
@@ -226,7 +226,7 @@ or import from file</string>
                    <string>EC&amp;I:</string>
                   </property>
                   <property name="alignment">
-                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                   <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                   </property>
                   <property name="buddy">
                    <cstring>cmbECI</cstring>
@@ -423,7 +423,7 @@ or import from file</string>
                 <item>
                  <spacer name="hSpacer_hLayoutECI">
                   <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                   <enum>Qt::Orientation::Horizontal</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
@@ -530,7 +530,7 @@ for this symbology to defaults</string>
                 <item>
                  <spacer name="hSpacer_hLayoutComposite">
                   <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                   <enum>Qt::Orientation::Horizontal</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
@@ -597,7 +597,7 @@ for this symbology to defaults</string>
               <item>
                <layout class="QVBoxLayout" name="vLayoutComponentData">
                 <property name="sizeConstraint">
-                 <enum>QLayout::SetMinimumSize</enum>
+                 <enum>QLayout::SizeConstraint::SetMinimumSize</enum>
                 </property>
                 <item>
                  <layout class="QHBoxLayout" name="hLayoutComponentDataLabel">
@@ -1513,14 +1513,13 @@ or import from file</string>
              <property name="title">
               <string>Options</string>
              </property>
-             <layout class="QVBoxLayout" name="vLayoutSpecific">
-             </layout>
+             <layout class="QVBoxLayout" name="vLayoutSpecific"/>
             </widget>
            </item>
            <item>
             <spacer name="vSpacerData">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -1535,7 +1534,7 @@ or import from file</string>
              <item>
               <spacer name="hSpacer_hLayoutChks">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -1561,8 +1560,8 @@ or import from file</string>
 &lt;tr&gt;&lt;td&gt;\e&amp;nbsp;&lt;/td&gt;&lt;td&gt;Escape (0x1B)&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;\G&amp;nbsp;&lt;/td&gt;&lt;td&gt;Group Separator (0x1D)&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;\R&amp;nbsp;&lt;/td&gt;&lt;td&gt;Record Separator (0x1E)&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;\(&amp;nbsp;&lt;/td&gt;&lt;td&gt;Opening parenthesis (0x28) ("GS1 ()" only) &lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;\)&amp;nbsp;&lt;/td&gt;&lt;td&gt;Closing parenthesis (0x29) ("GS1 ()" only) &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;\(&amp;nbsp;&lt;/td&gt;&lt;td&gt;Opening parenthesis (0x28) (&quot;GS1 ()&quot; only) &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;\)&amp;nbsp;&lt;/td&gt;&lt;td&gt;Closing parenthesis (0x29) (&quot;GS1 ()&quot; only) &lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;\\&amp;nbsp;&lt;/td&gt;&lt;td&gt;Backslash (0x5C)&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;\dNNN&amp;nbsp;&lt;/td&gt;&lt;td&gt;8-bit character (N decimal)&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;\oNNN&amp;nbsp;&lt;/td&gt;&lt;td&gt;8-bit character (N octal)&lt;/td&gt;&lt;/tr&gt;
@@ -1637,7 +1636,7 @@ including GS1 Digital Link URIs
                <property name="checked">
                 <bool>false</bool>
                </property>
-               <property name="hidden">
+               <property name="hidden" stdset="0">
                 <bool>true</bool>
                </property>
               </widget>
@@ -1705,7 +1704,7 @@ or use standard height (if any) for default
                 <string>&amp;Height:</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                </property>
                <property name="buddy">
                 <cstring>heightb</cstring>
@@ -1756,7 +1755,7 @@ or use standard height (if any) for default
                 <string>Border &amp;Type:</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                </property>
                <property name="buddy">
                 <cstring>btype</cstring>
@@ -1802,7 +1801,7 @@ or use standard height (if any) for default
                 <string>B&amp;order Width:</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                </property>
                <property name="buddy">
                 <cstring>bwidth</cstring>
@@ -1837,7 +1836,7 @@ or use standard height (if any) for default
                 <string>&amp;Whitespace:</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                </property>
                <property name="buddy">
                 <cstring>spnWhitespace</cstring>
@@ -1900,7 +1899,7 @@ the barcode in X-dimensions</string>
                 <string>Fo&amp;nt Setting:</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                </property>
                <property name="buddy">
                 <cstring>cmbFontSetting</cstring>
@@ -1945,7 +1944,7 @@ the barcode in X-dimensions</string>
                 <string>Text &amp;Gap:</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                </property>
                <property name="buddy">
                 <cstring>spnTextGap</cstring>
@@ -2007,7 +2006,7 @@ the barcode in X-dimensions</string>
                 <string>&amp;Printing Scale:</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                </property>
                <property name="buddy">
                 <cstring>spnScale</cstring>
@@ -2066,7 +2065,7 @@ at given dot density</string>
                 <string>Print Size:</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                </property>
               </widget>
              </item>
@@ -2093,7 +2092,7 @@ at given dot density</string>
                 <string>&amp;Foreground:</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                </property>
                <property name="buddy">
                 <cstring>txt_fgcolor</cstring>
@@ -2146,7 +2145,7 @@ or decimal &quot;C,M,Y,K&quot; percentages (0-100)</string>
                 <string>Bac&amp;kground:</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                </property>
                <property name="buddy">
                 <cstring>txt_bgcolor</cstring>
@@ -2201,7 +2200,7 @@ e.g. &quot;FFFFFF00&quot;</string>
                 <string>Colours:</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                </property>
                <property name="buddy">
                 <cstring>btnReset</cstring>
@@ -2277,7 +2276,7 @@ e.g. &quot;FFFFFF00&quot;</string>
                 <string>R&amp;otate:</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                </property>
                <property name="buddy">
                 <cstring>cmbRotate</cstring>
@@ -2352,7 +2351,7 @@ e.g. &quot;FFFFFF00&quot;</string>
                 <string>Dot S&amp;ize:</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                </property>
                <property name="buddy">
                 <cstring>spnDotSize</cstring>
@@ -2393,7 +2392,7 @@ e.g. &quot;FFFFFF00&quot;</string>
            <item>
             <spacer name="vSpacerAppearance">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -2428,7 +2427,7 @@ e.g. &quot;FFFFFF00&quot;</string>
        <property name="sizeHint" stdset="0">
         <size>
          <width>2</width>
-         <height>22</height>
+         <height>21</height>
         </size>
        </property>
        <property name="sizeGripEnabled">
@@ -2480,8 +2479,6 @@ e.g. &quot;FFFFFF00&quot;</string>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
